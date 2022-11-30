@@ -1,0 +1,58 @@
+.body{
+	color: E8F6FD;
+	background-image: url("../css/mm-bg.png");
+	color: #E8F6FD;
+}
+
+
+.modal{
+	margin: auto;
+    background: #065ED4;
+    border-radius: 5px;
+	width: 50%;
+	padding: 10px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.upperDiv{
+	padding: 20px;
+	margin-top: 10px;
+	color: #231F20;
+}
+
+h3{
+	display: inline;
+}
+
+.inputfields{
+	margin: 20px;
+	padding: 10px;
+}
+
+input{
+	margin: 0;
+	margin-top: 20px;
+	box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.2);
+	border: #231F20;
+	border-radius: 3px;
+	width: 95%;
+}
+
+p{
+	margin-top: 20px;
+}
+
+button{
+	background: #E8F6FD;
+	width: 17%;
+	color: #231F20;
+	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+	display: block;
+  	margin-left: auto;
+ 	margin-right: 25px;
+}
+
+button:hover{
+	background-color: #065ED4;
+}
