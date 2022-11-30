@@ -6,31 +6,51 @@ import authService from "../services/authService";
 
 function Login() {
   const navigate = useNavigate();
-
+  
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
   const homenig = () => {
     navigate("/");
   };
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {}
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
 
+    const login = await authService.login({
+      email, password
+    });
+    console.log(login);
+  }
+    
   return (
     <div className={Styles.main}>
       <div className={Styles.login}>
         <div className={Styles.logo} onClick={homenig}>
           <img src={bg}></img>MoneyManage
         </div>
+        <label htmlFor="chk" aria-hidden="true">
+            Login
+        </label>
 
         <form onSubmit={(e) => onSubmit(e)}>
-          <label htmlFor="chk" aria-hidden="true">
-            Login
-          </label>
-          <input type="email" name="email" placeholder="Email" required></input>
+          
           <input
+            value={email}
+            onChange={(t) => setEmail(t.target.value)}
+            type="email" 
+            name="email" 
+            placeholder="Email" 
+            required>
+          </input>
+          <input
+            value={password}
+            onChange={(t) => setPassword(t.target.value)}
             type="password"
             name="pswd"
             placeholder="Password"
-            required
-          ></input>
+            required>
+          </input>
           <button>Sign-in</button>
         </form>
 

@@ -4,6 +4,7 @@ import api from "./api";
 async function login(fields: LoginFields) {
   try {
     const response = await api.post("login", { ...fields });
+    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
