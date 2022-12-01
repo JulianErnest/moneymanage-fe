@@ -23,8 +23,9 @@ export default function ProtectedLayout() {
   };
 
   useEffect(() => {
-    if (user.id != 0) {
-      navigate("/gettingstarted");
+    console.log(user);
+    if (user.id == 0) {
+      navigate("/");
     }
   }, [user]);
 

@@ -1,6 +1,6 @@
-import bg from "../css/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
+import bg from "../css/logo.png";
 
 import Styles from "../css/Login.module.css";
 import authService from "../services/authService";
@@ -35,6 +35,7 @@ function Login() {
         </label>
         <form onSubmit={(e) => onSubmit(e)}>
           <input
+            className={Styles.inp}
             value={email}
             onChange={(t) => setEmail(t.target.value)}
             type="email"
@@ -43,6 +44,7 @@ function Login() {
             required
           ></input>
           <input
+            className={Styles.inp}
             value={password}
             onChange={(t) => setPassword(t.target.value)}
             type="password"
@@ -50,7 +52,7 @@ function Login() {
             placeholder="Password"
             required
           ></input>
-          <button>Sign-in</button>
+          <button className={Styles.btn}>Sign-in</button>
         </form>
         <a className={Styles.reg} onClick={() => navigate("/register")}>
           Don't have an account yet?
