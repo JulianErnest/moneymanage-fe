@@ -13,10 +13,6 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const homenig = () => {
-    navigate("/");
-  };
-
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -27,13 +23,12 @@ function Register() {
       password,
       confirm_password: confirmPassword,
     });
-    console.log(register);
   }
 
   return (
     <div className={Styles.main}>
       <div className={Styles.login}>
-        <div className={Styles.logo} onClick={homenig}>
+        <div className={Styles.logo} onClick={() => navigate("/")}>
           <img src={bg}></img>MoneyManage
         </div>
         <label htmlFor="chk" aria-hidden="true">
@@ -84,7 +79,7 @@ function Register() {
           <button>Sign-up</button>
         </form>
 
-        <a className={Styles.reg} href="/Login">
+        <a className={Styles.reg} onClick={() => navigate("/login")}>
           Already have an account?
         </a>
       </div>

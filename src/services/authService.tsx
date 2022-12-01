@@ -1,25 +1,21 @@
 import { LoginFields, RegisterFields } from "../types/fields";
-import api from "./api";
+import api, { DefaultResponse } from "./api";
 
 async function login(fields: LoginFields) {
   try {
     const response = await api.post("login", { ...fields });
-    console.log(response);
-    return response;
-  } catch (error) {
-    console.log(error);
-    return error;
+    return response.data;
+  } catch (error: any) {
+    throw error.response.data;
   }
 }
 
 async function register(fields: RegisterFields) {
   try {
     const response = await api.post("register", { ...fields });
-    console.log(response);
-    return response;
-  } catch (error) {
-    console.log(error);
-    return error;
+    return response.data as DefaultResponse;
+  } catch (error: any) {
+    throw error.response.data;
   }
 }
 
