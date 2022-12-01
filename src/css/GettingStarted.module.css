@@ -1,5 +1,5 @@
-.body{
-	color: E8F6FD;
+.bod{
+	
 	background-image: url("../css/mm-bg.png");
 	color: #E8F6FD;
 }
@@ -30,20 +30,21 @@ h3{
 	padding: 10px;
 }
 
-input{
+.inp{
 	margin: 0;
 	margin-top: 20px;
 	box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.2);
 	border: #231F20;
 	border-radius: 3px;
 	width: 95%;
+	height: 30px
 }
 
 p{
 	margin-top: 20px;
 }
 
-button{
+.submitBtn{
 	background: #E8F6FD;
 	width: 17%;
 	color: #231F20;
@@ -51,6 +52,7 @@ button{
 	display: block;
   	margin-left: auto;
  	margin-right: 25px;
+	height: 30px;
 }
 
 button:hover{
