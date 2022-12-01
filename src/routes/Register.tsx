@@ -23,6 +23,13 @@ function Register() {
       password,
       confirm_password: confirmPassword,
     });
+    if (!register.errors) {
+      setFirstName("");
+      setlastName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+    }
     console.log(register);
   }
 

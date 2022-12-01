@@ -15,6 +15,7 @@ async function register(fields: RegisterFields) {
     const response = await api.post("register", { ...fields });
     return response.data as DefaultResponse;
   } catch (error: any) {
+    console.log(error);
     return error.response.data;
   }
 }
