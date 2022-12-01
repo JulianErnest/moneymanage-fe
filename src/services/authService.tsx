@@ -6,7 +6,7 @@ async function login(fields: LoginFields) {
     const response = await api.post("login", { ...fields });
     return response.data;
   } catch (error: any) {
-    throw error.response.data;
+    return error.response.data;
   }
 }
 
@@ -15,7 +15,7 @@ async function register(fields: RegisterFields) {
     const response = await api.post("register", { ...fields });
     return response.data as DefaultResponse;
   } catch (error: any) {
-    throw error.response.data;
+    return error.response.data;
   }
 }
 

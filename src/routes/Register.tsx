@@ -23,6 +23,7 @@ function Register() {
       password,
       confirm_password: confirmPassword,
     });
+    console.log(register);
   }
 
   return (
@@ -42,7 +43,7 @@ function Register() {
             type="text"
             name="firstName"
             placeholder="First Name"
-            className={Styles.inp} 
+            className={Styles.inp}
             required
           ></input>
           <input
@@ -51,7 +52,7 @@ function Register() {
             type="text"
             name="lastName"
             placeholder="Last Name"
-            className={Styles.inp} 
+            className={Styles.inp}
             required
           ></input>
           <input
@@ -60,7 +61,7 @@ function Register() {
             type="email"
             name="email"
             placeholder="Email"
-            className={Styles.inp} 
+            className={Styles.inp}
             required
           ></input>
           <input
@@ -69,7 +70,7 @@ function Register() {
             type="password"
             name="pswd"
             placeholder="Password"
-            className={Styles.inp} 
+            className={Styles.inp}
             required
           ></input>
           <input
@@ -78,10 +79,10 @@ function Register() {
             type="password"
             name="conpswd"
             placeholder="Confirm Password"
-            className={Styles.inp} 
+            className={Styles.inp}
             required
           ></input>
-          <button className={Styles.btn} >Sign-up</button>
+          <button className={Styles.btn}>Sign-up</button>
         </form>
 
         <a className={Styles.reg} onClick={() => navigate("/login")}>
