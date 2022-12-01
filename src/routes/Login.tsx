@@ -1,4 +1,4 @@
-import Styles from "../css/Login.module.css";
+import Stylez from "../css/Login.module.css";
 import bg from "../css/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -24,9 +24,9 @@ function Login() {
   }
     
   return (
-    <div className={Styles.main}>
-      <div className={Styles.login}>
-        <div className={Styles.logo} onClick={homenig}>
+    <div className={Stylez.main}>
+      <div className={Stylez.login}>
+        <div className={Stylez.logo} onClick={homenig}>
           <img src={bg}></img>MoneyManage
         </div>
         <label htmlFor="chk" aria-hidden="true">
@@ -40,7 +40,8 @@ function Login() {
             onChange={(t) => setEmail(t.target.value)}
             type="email" 
             name="email" 
-            placeholder="Email" 
+            placeholder="Email"
+            className={Stylez.inp} 
             required>
           </input>
           <input
@@ -49,12 +50,13 @@ function Login() {
             type="password"
             name="pswd"
             placeholder="Password"
+            className={Stylez.inp} 
             required>
           </input>
-          <button>Sign-in</button>
+          <button className={Stylez.btn} >Sign-in</button>
         </form>
 
-        <a className={Styles.reg} href="/Register">
+        <a className={Stylez.reg} href="/Register">
           Don't have an account yet?
         </a>
       </div>

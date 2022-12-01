@@ -4,7 +4,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-family: 'Jost', sans-serif;
+	font-family: 'Poppins';
 	background: linear-gradient(to bottom, #30b2da, #66d8fa, #40b7db);
 	height: 100vh;
 	background-image: url("../css/mm-bg.png");
@@ -45,8 +45,8 @@ label{
 	transition: .5s ease-in-out;
 }
 
-input{
-	width: 60%;
+.inp{
+	width: 88%;
 	height: 25px;
 	background: #e0dede;
 	justify-content: center;
@@ -56,9 +56,10 @@ input{
 	border: none;
 	outline: none;
 	border-radius: 5px;
+	
 }
-button{
-	width: 60%;
+.btn{
+	width: 70%;
 	height: 50px;
 	margin: 10px auto;
 	justify-content: center;
@@ -79,7 +80,6 @@ button{
 
 	font-size: 15px;
 	position: relative;
-  	
   	left:28%;
 }
 

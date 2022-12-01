@@ -1,0 +1,47 @@
+.header {
+    overflow: hidden;
+    background-color: rgb(189, 236, 255);
+    background: #9edaf8;
+    padding: 20px 10px;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex: auto;
+}
+  
+.header a {
+    float: right;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 30%;
+    width: 70px;
+    margin-right: 30px;
+    color: white;
+    margin-top: 4px;
+    background-color: black;
+}
+
+
+.headerright {
+    font-family: 'Poppins';
+    float: right;
+    margin-left: 50%;
+    flex:auto;
+    display: flex;
+}
+
+.logopic {
+    font-size: 30px;
+    display: flex;
+	font-family: 'Poppins';
+	font-weight: bold;
+	flex: auto;
+    margin-left: 30px;
+    margin-top: 5px;
+    
+}
+

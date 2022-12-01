@@ -15,7 +15,7 @@ function GettingStarted() {
     };
 
     return (
-        <div className={Styles.body}>
+        <div className={Styles.bod}>
             <div className={Styles.modal}>
                 <div className={Styles.upperDiv}>
                     <h3>Let's get you started!</h3>
@@ -25,7 +25,7 @@ function GettingStarted() {
                     <img src={LightBulb}></img>
                     <h3>Account Name</h3>
                     <p>Input the name of the account you wish to track your expenses on.</p>
-                    <input type="text" />
+                    <input type="text" className={Styles.inp}/>
                 </div>
 
                 <div className={Styles.inputfields}>
@@ -39,7 +39,7 @@ function GettingStarted() {
                     <img src={CurrencyDollar}></img>
                     <h3>Select your Cash Balance</h3>
                     <p>How much cash do you have right now? You may skip this part if you wish to sync your bank account with the site.</p>
-                    <input type="text" />
+                    <input type="text" className={Styles.inp}/>
                 </div>
 
                 <button className={Styles.submitBtn}>Submit</button>

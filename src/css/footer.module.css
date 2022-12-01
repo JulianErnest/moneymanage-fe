@@ -1,0 +1,43 @@
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #3bb9df;
+  height: 100px;
+  text-align: center;
+  z-index:9999;
+  
+}
+
+.footerp1{
+  float: left;
+  margin-left: 30px;
+  margin-top: 32px;
+  font-family: 'Poppins';
+}
+
+.fb{
+  width:100px;
+  float: right;
+  margin-right: 30px;
+  margin-top: 13px;
+}
+
+.insta{
+  width:65px;
+  height: 60px;
+  float: right;
+  margin-right: 30px;
+  margin-top: 11px;
+}
+
+.twit{
+  width:60px;
+  height: 55px;
+  float: right;
+  margin-right: 34px;
+  margin-top: 12px;
+
+}

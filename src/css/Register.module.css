@@ -26,13 +26,13 @@ body {
   font-weight: bold;
   flex: auto;
 }
-img {
+.img {
   position: relative;
   width: 50px;
   height: 50px;
 }
 
-label {
+.label {
   color: #fff;
   font-size: 2.3em;
   justify-content: center;
@@ -43,8 +43,8 @@ label {
   transition: 0.5s ease-in-out;
 }
 
-input {
-  width: 60%;
+.inp {
+  width: 85%;
   height: 25px;
   background: #e0dede;
   justify-content: center;
@@ -55,7 +55,7 @@ input {
   outline: none;
   border-radius: 5px;
 }
-button {
+.btn {
   width: 60%;
   height: 50px;
   margin: 10px auto;
