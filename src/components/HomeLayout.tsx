@@ -43,6 +43,7 @@ export default function HomeLayout() {
               </a>
             </div>
           </div>
+
           <div className={footerstyles.footer}>
             <p className={footerstyles.footerp1}>
               MoneyManage<br></br>© Copyright 2022
@@ -59,8 +60,7 @@ export default function HomeLayout() {
           </div>
         </div>
       )}
-
-      {outlet}
+        {outlet}
     </div>
   );
 }

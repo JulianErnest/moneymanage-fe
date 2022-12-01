@@ -4,8 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Jost", sans-serif;
-  background: linear-gradient(to bottom, #30b2da, #66d8fa, #40b7db);
+  font-family: sans-serif;
   height: 100vh;
   background-image: url("../css/mm-bg.png");
 }
@@ -22,7 +21,7 @@ body {
   padding-left: 24%;
   display: flex;
   font-size: 30px;
-  font-family: "Jost", sans-serif;
+  font-family: sans-serif;
   font-weight: bold;
   flex: auto;
 }
@@ -62,7 +61,7 @@ body {
   justify-content: center;
   display: block;
   color: #fff;
-  background: #66d8fa;
+  background: #323232;
   font-size: 1em;
   font-weight: bold;
   margin-top: 20px;
@@ -80,15 +79,12 @@ body {
   left: 28%;
 }
 
-button:hover {
-  background: #66d8fa;
-}
 .login {
   width: 400px;
-  background: #24b8e6;
+  background: #065ED4;
   border-radius: 10%;
   padding-bottom: 40px;
-  box-shadow: 5px 20px 50px #000;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.2);
 }
 .login label {
   color: black;

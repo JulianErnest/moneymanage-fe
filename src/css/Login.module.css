@@ -62,7 +62,7 @@ label {
   justify-content: center;
   display: block;
   color: #fff;
-  background: #66d8fa;
+  background: #231F20;
   font-size: 1em;
   font-weight: bold;
   margin-top: 20px;
@@ -79,16 +79,12 @@ label {
   left: 28%;
 }
 
-button:hover {
-  background: #66d8fa;
-}
 .login {
   height: 500px;
   width: 400px;
-  background: #24b8e6;
+  background: #065ED4;
   border-radius: 10%;
-
-  box-shadow: 5px 20px 50px #000;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.2);
 }
 .login label {
   color: black;

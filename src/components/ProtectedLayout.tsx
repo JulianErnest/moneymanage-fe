@@ -35,7 +35,8 @@ export default function ProtectedLayout() {
         <div>
           <div className={headstyles.header}>
             <div className={headstyles.logopic} onClick={homenig}>
-              <img src={logo}></img>MoneyManage
+              <img src={logo}></img>
+              <h1>MoneyManage</h1>
             </div>
           </div>
           <div className={footerstyles.footer}>
