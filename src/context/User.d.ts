@@ -5,6 +5,7 @@ export type User = {
   id: number;
   last_name: string;
   updated_at: string;
+  has_account: number;
 };
 
 export type UserContextType = {

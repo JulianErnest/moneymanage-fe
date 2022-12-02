@@ -15,4 +15,6 @@ export type GettingStartedFields = {
   name: string;
   balance: number;
   currency: string;
+  id: number;
+  token: string;
 };
