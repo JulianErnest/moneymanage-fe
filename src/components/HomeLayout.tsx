@@ -1,17 +1,19 @@
 import { useContext, useEffect } from "react";
 import { useNavigate, useOutlet } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+
 import { UserContextType } from "../context/User";
 import { UserContext } from "../context/UserContext";
-
 import headstyles from "../css/header.module.css";
 import footerstyles from "../css/footer.module.css";
 import logo from "../css/logo.png";
 import fb from "../css/fb.png";
 import insta from "../css/insta.png";
 import twit from "../css/twit.png";
+
 export default function HomeLayout() {
   const { user } = useContext(UserContext) as UserContextType;
+
   const outlet = useOutlet();
   const location = useLocation();
   const navigate = useNavigate();
@@ -22,10 +24,15 @@ export default function HomeLayout() {
 
   useEffect(() => {
     if (user.id != 0) {
-      navigate("/dashboard");
+      navigate("/GettingStarted");
+      if (user.has_account == 1){
+        navigate("/Dashboard");
+      }
     }
+    
   }, [user]);
 
+  
   return (
     <div>
       {location.pathname === "/" ? (

@@ -1,4 +1,4 @@
-import { LoginFields, RegisterFields, GettingStartedFields } from "../types/fields";
+import { LoginFields, RegisterFields} from "../types/fields";
 import api, { DefaultResponse } from "./api";
 
 async function login(fields: LoginFields) {
@@ -20,18 +20,7 @@ async function register(fields: RegisterFields) {
   }
 }
 
-async function store(fields: GettingStartedFields) {
-  try {
-    const response = await api.post("store", { ...fields });
-    return response.data as DefaultResponse;
-  } catch (error: any) {
-    console.log(error);
-    return error.response.data;
-  }
-}
-
 export default {
   login,
   register,
-  store,
 };

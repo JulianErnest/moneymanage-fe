@@ -12,8 +12,10 @@ function Dropdown({selected, setSelected}) {
             </div>
             {isActive && (
                 <div className={Styles.dropdowncontent}>
-                    {options.map(option =>(
-                        <div onClick={e => {
+                    {options.map((option, index) =>(
+                    
+                        <div key={index} onClick={e => {
+                            
                             setSelected(option)
                             setIsActive(false)
                         }}

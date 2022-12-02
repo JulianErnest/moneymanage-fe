@@ -1,43 +1,41 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContextType } from "../context/User";
+import { UserContext } from "../context/UserContext";
 
 import Styles from "../css/GettingStarted.module.css";
-import authService from "../services/authService";
+import accountService from "../services/accountService";
 import LocationMarker from "../css/LocationMarker.png";
 import CurrencyDollar from "../css/CurrencyDollar.png";
 import LightBulb from "../css/LightBulb.png"
-
 import Dropdown from './Dropdown';
 
 
 function GettingStarted() {
     const navigate = useNavigate();
-    const[selected, setSelected] = useState("");
-
+    const { user, token } = useContext(UserContext) as UserContextType;
     const [name, setName] = useState("");
     const [balance, setBalance] = useState("");
     const [currency, setCurrency] = useState("");
-
-    async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-
-        const register = await authService.store({
-            name: name,
+    
+    async function onSubmit() {
+        const response = await accountService.createAccount({
+            name,
             balance: +balance,
-            currency: currency
+            currency,
+            id: user.id,
+            token
         });
+        console.log(response);
 
-    if (!register.errors) {
-        setName("");
-        setBalance("");
-        setCurrency("");
+        if (!response.errors) {
+            setName("");
+            setBalance("");
+            setCurrency("");
+        }
+        navigate("/Dashboard");
     }
-    console.log(register);
-
-    const homepage = () => {
-        navigate("/");
-    };
-
+    
     return (
         <div className={Styles.bod}>
             <div className={Styles.modal}>
@@ -49,27 +47,27 @@ function GettingStarted() {
                         <img src={LightBulb}></img>
                         <h3>Account Name</h3>
                         <p>Input the name of the account you wish to track your expenses on.</p>
-                        <input value={name} type="text"  className={Styles.inp}/>
+                        <input value={name} type="text"  className={Styles.inp} onChange={(t) => setName(t.target.value)}/>
                     </div>
 
                     <div className={Styles.inputfields}>
                         <img src={LocationMarker}></img>
                         <h3>Select Base Currency</h3>
                         <p>Let’s start by selecting your base currency. All transactions in other curriences will be calculated regards to this one.</p>
-                        <Dropdown selected={selected} setSelected={setSelected}/>
+                        <Dropdown selected={currency} setSelected={setCurrency}/>
                     </div>
 
                     <div className={Styles.inputfields}>
                         <img src={CurrencyDollar}></img>
                         <h3>Select your Cash Balance</h3>
                         <p>How much cash do you have right now? You may skip this part if you wish to sync your bank account with the site.</p>
-                        <input value={balance} type="text"  className={Styles.inp}/>
+                        <input value={balance} type="text"  className={Styles.inp} onChange={(t) => setBalance(t.target.value)}/>
                     </div>
-                <button className={Styles.submitBtn}>Submit</button>
+                <button className={Styles.submitBtn} onClick={onSubmit}>Submit</button>
                 
             </div>
         </div>
     );
-}
+    
 }
 export default GettingStarted;
