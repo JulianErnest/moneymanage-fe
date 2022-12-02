@@ -12,6 +12,8 @@ import twit from "../css/twit.png";
 import { UserContext } from "../context/UserContext";
 import { UserContextType } from "../context/User";
 
+const allowedRoutes = ["/gettingstarted", "/dashboard"];
+
 export default function ProtectedLayout() {
   const outlet = useOutlet();
   const location = useLocation();
@@ -29,17 +31,20 @@ export default function ProtectedLayout() {
     }
   }, [user]);
 
+  console.log(location.pathname);
+
   return (
-    <div>
-      {location.pathname === "/GettingStarted" && (
-        <div>
+    <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+      {allowedRoutes.includes(location.pathname.toLowerCase()) && (
+        <>
           <div className={headstyles.header}>
             <div className={headstyles.logopic} onClick={homenig}>
               <img src={logo}></img>
-              <h1>MoneyManage</h1>
+              <h3 className={headstyles.title}>MoneyManage</h3>
             </div>
           </div>
-          <div className={footerstyles.footer}>
+          {outlet}
+          <div className={footerstyles.footerProtected}>
             <p className={footerstyles.footerp1}>
               MoneyManage<br></br>© Copyright 2022
             </p>
@@ -53,9 +58,8 @@ export default function ProtectedLayout() {
               <img src={twit} className={footerstyles.twit}></img>
             </a>
           </div>
-        </div>
+        </>
       )}
-      {outlet}
     </div>
   );
 }
