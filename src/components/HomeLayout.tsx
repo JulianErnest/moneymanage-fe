@@ -22,13 +22,13 @@ export default function HomeLayout() {
 
   useEffect(() => {
     if (user.id != 0) {
-      navigate("/gettingstarted");
+      navigate("/dashboard");
     }
   }, [user]);
 
   return (
     <div>
-      {location.pathname === "/" && (
+      {location.pathname === "/" ? (
         <div>
           <div className={headstyles.header}>
             <div className={headstyles.logopic} onClick={homenig}>
@@ -43,7 +43,7 @@ export default function HomeLayout() {
               </a>
             </div>
           </div>
-
+          {outlet}
           <div className={footerstyles.footer}>
             <p className={footerstyles.footerp1}>
               MoneyManage<br></br>© Copyright 2022
@@ -59,8 +59,9 @@ export default function HomeLayout() {
             </a>
           </div>
         </div>
+      ) : (
+        <>{outlet}</>
       )}
-        {outlet}
     </div>
   );
 }
