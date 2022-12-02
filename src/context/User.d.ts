@@ -13,3 +13,4 @@ export type UserContextType = {
   user: User;
   setUser: (user: User) => void;
 };
+

@@ -31,7 +31,7 @@ export default function ProtectedLayout() {
 
   return (
     <div>
-      {location.pathname === "/GettingStarted" && (
+      {location.pathname.toLowerCase() === "/gettingStarted" && (
         <div>
           <div className={headstyles.header}>
             <div className={headstyles.logopic} onClick={homenig}>
@@ -39,6 +39,7 @@ export default function ProtectedLayout() {
               <h1>MoneyManage</h1>
             </div>
           </div>
+          {outlet}
           <div className={footerstyles.footer}>
             <p className={footerstyles.footerp1}>
               MoneyManage<br></br>© Copyright 2022
@@ -55,7 +56,7 @@ export default function ProtectedLayout() {
           </div>
         </div>
       )}
-      {outlet}
+      
     </div>
   );
 }

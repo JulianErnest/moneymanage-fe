@@ -10,3 +10,9 @@ export type RegisterFields = {
   password: string;
   confirm_password: string;
 };
+
+export type GettingStartedFields = {
+  name: string;
+  balance: number;
+  currency: string;
+};

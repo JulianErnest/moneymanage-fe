@@ -7,7 +7,7 @@ import Home from "./Home";
 import Login from "./Login";
 import Dashboard from "./Dashboard";
 import Register from "./Register";
-import GettingStarted from "./Getting.Started";
+import GettingStarted from "./GettingStarted";
 
 export default function App() {
   return (
