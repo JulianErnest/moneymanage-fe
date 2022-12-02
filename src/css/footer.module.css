@@ -27,24 +27,30 @@
 }
 
 .fb {
-  width: 100px;
+  width: 60px;
+  float: 60px;
   float: right;
-  margin-right: 30px;
-  margin-top: 13px;
+  margin: 20px;
+  padding: 20px;
 }
 
 .insta {
-  width: 65px;
+  width: 60px;
   height: 60px;
   float: right;
-  margin-right: 30px;
-  margin-top: 11px;
+  margin: 20px;
+  padding: 20px;
 }
 
 .twit {
   width: 60px;
-  height: 55px;
+  height: 60px;
   float: right;
-  margin-right: 34px;
-  margin-top: 12px;
+  margin: 20px;
+  padding: 20px;
+}
+
+.icon{
+  size: 'lg';
+  color: #231F20;
 }

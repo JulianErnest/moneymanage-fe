@@ -3,13 +3,14 @@ import { useNavigate, useOutlet } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { UserContextType } from "../context/User";
 import { UserContext } from "../context/UserContext";
+import { AiFillInstagram } from "react-icons/ai";
+import { AiOutlineTwitter } from "react-icons/ai";
+import { AiFillLinkedin } from "react-icons/ai";
 
 import headstyles from "../css/header.module.css";
 import footerstyles from "../css/footer.module.css";
 import logo from "../css/logo.png";
-import fb from "../css/fb.png";
-import insta from "../css/insta.png";
-import twit from "../css/twit.png";
+
 export default function HomeLayout() {
   const { user } = useContext(UserContext) as UserContextType;
   const outlet = useOutlet();
@@ -49,13 +50,13 @@ export default function HomeLayout() {
               MoneyManage<br></br>© Copyright 2022
             </p>
             <a href="http://facebook.com" className={footerstyles.fb}>
-              <img src={fb} className={footerstyles.fb}></img>
+              <AiFillLinkedin className={footerstyles.icon} size={40}/>
             </a>
             <a href="http://instagram.com" className={footerstyles.insta}>
-              <img src={insta} className={footerstyles.insta}></img>
+              <AiFillInstagram className={footerstyles.icon} size={40}/>
             </a>
             <a href="http://twitter.com" className={footerstyles.twit}>
-              <img src={twit} className={footerstyles.twit}></img>
+              <AiOutlineTwitter className={footerstyles.icon} size={40}/>
             </a>
           </div>
         </div>
