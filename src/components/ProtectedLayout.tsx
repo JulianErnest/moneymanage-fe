@@ -14,7 +14,7 @@ import { AiFillLinkedin } from "react-icons/ai";
 import { UserContext } from "../context/UserContext";
 import { UserContextType } from "../context/User";
 
-const allowedRoutes = ["/gettingstarted", "/dashboard"];
+const allowedRoutes = ["/gettingstarted", "/dashboard", "/accounts"];
 
 export default function ProtectedLayout() {
   const outlet = useOutlet();
@@ -26,12 +26,12 @@ export default function ProtectedLayout() {
     navigate("/");
   };
 
-  useEffect(() => {
-    console.log(user);
-    if (user.id == 0) {
-      navigate("/");
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   console.log(user);
+  //   if (user.id == 0) {
+  //     navigate("/");
+  //   }
+  // }, [user]);
 
   console.log(location.pathname);
 

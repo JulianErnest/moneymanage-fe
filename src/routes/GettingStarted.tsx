@@ -8,7 +8,7 @@ import accountService from "../services/accountService";
 import LocationMarker from "../css/LocationMarker.png";
 import CurrencyDollar from "../css/CurrencyDollar.png";
 import LightBulb from "../css/LightBulb.png"
-import Dropdown from './Dropdown';
+import Dropdown from '../components/Dropdown';
 
 
 function GettingStarted() {
