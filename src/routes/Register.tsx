@@ -4,6 +4,7 @@ import { useState } from "react";
 import Styles from "../css/Register.module.css";
 import bg from "../css/logo.png";
 import authService from "../services/authService";
+import toastService from "../services/toastService";
 
 function Register() {
   const navigate = useNavigate();
@@ -16,21 +17,21 @@ function Register() {
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const register = await authService.register({
+    const response = await authService.register({
       first_name: firstName,
       last_name: lastName,
       email,
       password,
       confirm_password: confirmPassword,
     });
-    if (!register.errors) {
+    toastService.showToast(response);
+    if (!response.errors) {
       setFirstName("");
       setlastName("");
       setEmail("");
       setPassword("");
       setConfirmPassword("");
     }
-    console.log(register);
   }
 
   return (
