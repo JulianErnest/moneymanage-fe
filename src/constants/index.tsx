@@ -6,5 +6,15 @@ export default {
     id: 0,
     last_name: "",
     updated_at: "",
+    has_account: 0,
+  },
+  DEFAULT_ACCOUNT: {
+    balance: "",
+    created_at: "",
+    currency: "",
+    id: 0,
+    name: "",
+    updated_at: "",
+    user_id: 0,
   },
 };
