@@ -6,13 +6,16 @@ import Styles from "../css/Login.module.css";
 import authService from "../services/authService";
 import { UserContextType } from "../context/User";
 import { UserContext } from "../context/UserContext";
+import accountService from "../services/accountService";
 
 function Login() {
   const navigate = useNavigate();
-  const { setUser, setToken } = useContext(UserContext) as UserContextType;
+  const { setUser, setToken, setAccount } = useContext(
+    UserContext
+  ) as UserContextType;
 
-  const [email, setEmail] = useState("ecleojosscharyborj@gmail.com");
-  const [password, setPassword] = useState("123");
+  const [email, setEmail] = useState("bats@mail.com");
+  const [password, setPassword] = useState("123123");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -20,8 +23,15 @@ function Login() {
       email,
       password,
     });
-    setToken(response.data.token);
-    setUser(response.data.user);
+    if (response.success) {
+      const account = await accountService.getAccount(
+        response.data.user.id,
+        response.data.token
+      );
+      setAccount(account.data[0]);
+      setToken(response.data.token);
+      setUser(response.data.user);
+    }
   }
 
   return (
