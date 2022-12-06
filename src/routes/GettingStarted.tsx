@@ -9,6 +9,7 @@ import LocationMarker from "../css/LocationMarker.png";
 import CurrencyDollar from "../css/CurrencyDollar.png";
 import LightBulb from "../css/LightBulb.png";
 import Dropdown from "../components/Dropdown";
+import toastService from "../services/toastService";
 
 function GettingStarted() {
   const navigate = useNavigate();
@@ -25,14 +26,14 @@ function GettingStarted() {
       id: user.id,
       token,
     });
+    toastService.showToast(response);
     setToken(response.data);
 
-    if (!response.errors) {
+    if (response.success) {
       setName("");
       setBalance("");
       setCurrency("");
     }
-    navigate("/Dashboard");
   }
 
   return (

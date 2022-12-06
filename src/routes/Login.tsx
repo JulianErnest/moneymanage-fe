@@ -7,6 +7,7 @@ import authService from "../services/authService";
 import { UserContextType } from "../context/User";
 import { UserContext } from "../context/UserContext";
 import accountService from "../services/accountService";
+import toastService from "../services/toastService";
 
 function Login() {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ function Login() {
       email,
       password,
     });
+    toastService.showToast(response);
     if (response.success) {
       const account = await accountService.getAccount(
         response.data.user.id,

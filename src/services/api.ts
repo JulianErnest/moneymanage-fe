@@ -7,6 +7,7 @@ const api = axios.create({
 export type DefaultResponse = {
   data: string;
   success: boolean;
+  message: string;
 };
 
 export default api;
