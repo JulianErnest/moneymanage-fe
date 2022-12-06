@@ -1,8 +1,10 @@
 body {
+  overflow: hidden;
 }
 
 .main {
   font-size: 30px;
+  
 }
 
 .header1 {
@@ -26,8 +28,8 @@ body {
 .getStarted {
   width: 250px;
   height: 50px;
-  margin-top: 400px;
-  margin-right: 130px;
+  margin-top: 170px;
+  margin-left: 80%;
   float: right;
   color: #323232;
   background: #e8f6fd;
@@ -36,6 +38,7 @@ body {
   transition: 0.2s ease-in;
   cursor: pointer;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  position: absolute;
 }
 
 .header1,

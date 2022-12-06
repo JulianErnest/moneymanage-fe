@@ -4,6 +4,7 @@
   height: 50px;
   width: 100%;
   display: flex;
+  
 }
 
 .header a {
@@ -20,6 +21,28 @@
   background-color: #323232;
 }
 
+.nav{
+  float: left;
+  display: flex;
+  
+  flex: auto;
+  text-align: left;
+  margin-top: 20px;
+  margin-left: 400px;
+  position: absolute;
+}
+
+.nav div{
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  float: left;
+  margin-right: 40px;
+  display: flex;
+  
+  
+}
+
 img {
   vertical-align: middle;
 }
@@ -27,7 +50,7 @@ img {
 .headerright {
   font-family: sans-serif;
   float: right;
-  margin-left: 50%;
+  margin-left: 60%;
   flex: auto;
   display: flex;
 }
@@ -40,8 +63,11 @@ img {
   flex: auto;
   margin-left: 30px;
   margin-top: 5px;
+  width: 0;
+  
 }
 
 .title {
   margin-top: 0;
+  
 }

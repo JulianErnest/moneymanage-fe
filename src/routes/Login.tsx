@@ -14,8 +14,8 @@ function Login() {
     UserContext
   ) as UserContextType;
 
-  const [email, setEmail] = useState("bats@mail.com");
-  const [password, setPassword] = useState("123123");
+  const [email, setEmail] = useState("123@gmail.com");
+  const [password, setPassword] = useState("123");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

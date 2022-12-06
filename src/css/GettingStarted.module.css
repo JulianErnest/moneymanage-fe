@@ -2,6 +2,7 @@
 	
 	background-image: url("../css/mm-bg.png");
 	color: #E8F6FD;
+	overflow-y: auto;
 }
 
 

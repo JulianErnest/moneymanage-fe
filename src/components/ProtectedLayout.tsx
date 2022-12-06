@@ -24,7 +24,14 @@ export default function ProtectedLayout() {
   const homenig = () => {
     navigate("/");
   };
-
+  
+  const accounts = () => {
+    navigate("/Accounts");
+  };
+  const spendings = () => {
+    navigate("/Dashboard");
+  };
+  
   useEffect(() => {
     console.log(user);
     if (user.id == 0) {
@@ -42,8 +49,14 @@ export default function ProtectedLayout() {
             <div className={headstyles.logopic} onClick={homenig}>
               <img src={logo}></img>
               <h3 className={headstyles.title}>MoneyManage</h3>
+              
             </div>
+            <div className={headstyles.nav}>
+                <div onClick={spendings}>Spendings</div>
+                <div onClick={accounts}>Accounts</div>
+              </div>
           </div>
+          
           {outlet}
           <div className={footerstyles.footerProtected}>
             <p className={footerstyles.footerp1}>
