@@ -18,3 +18,17 @@ export type GettingStartedFields = {
   id: number;
   token: string;
 };
+
+export type AddCategoryFields = {
+  type: "SPENDING" | "INCOME";
+  description: string;
+};
+
+export type AddEntryFields = {
+  name: string;
+  amount: number;
+  date: string;
+  type: "SPENDING" | "INCOME";
+  description: string;
+  category_id: number;
+};

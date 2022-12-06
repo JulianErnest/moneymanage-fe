@@ -1,3 +1,5 @@
+import { Account } from "../types/Account";
+
 export type User = {
   created_at: string;
   email: string;
@@ -13,5 +15,6 @@ export type UserContextType = {
   setToken: (token: string) => void;
   user: User;
   setUser: (user: User) => void;
+  account: Account;
+  setAccount: (account: Account) => void;
 };
-

@@ -27,9 +27,6 @@ export default function TimePicker({ date, setDate }: any) {
       onChange={(newValue) => {
         setDate(newValue as any);
       }}
-      InputProps={{
-        disableUnderline: true,
-      }}
       renderInput={(params) => (
         <TextField style={styles.addSpendingDate} {...params} />
       )}

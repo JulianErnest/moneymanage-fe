@@ -10,7 +10,6 @@ import { AiFillInstagram } from "react-icons/ai";
 import { AiOutlineTwitter } from "react-icons/ai";
 import { AiFillLinkedin } from "react-icons/ai";
 
-
 import { UserContext } from "../context/UserContext";
 import { UserContextType } from "../context/User";
 
@@ -26,12 +25,12 @@ export default function ProtectedLayout() {
     navigate("/");
   };
 
-  // useEffect(() => {
-  //   console.log(user);
-  //   if (user.id == 0) {
-  //     navigate("/");
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    console.log(user);
+    if (user.id == 0) {
+      navigate("/");
+    }
+  }, [user]);
 
   console.log(location.pathname);
 
@@ -51,13 +50,13 @@ export default function ProtectedLayout() {
               MoneyManage<br></br>© Copyright 2022
             </p>
             <a href="http://facebook.com" className={footerstyles.fb}>
-              <AiFillLinkedin className={footerstyles.icon} size={40}/>
+              <AiFillLinkedin className={footerstyles.icon} size={40} />
             </a>
             <a href="http://instagram.com" className={footerstyles.insta}>
-              <AiFillInstagram className={footerstyles.icon} size={40}/>
+              <AiFillInstagram className={footerstyles.icon} size={40} />
             </a>
             <a href="http://twitter.com" className={footerstyles.twit}>
-              <AiOutlineTwitter className={footerstyles.icon} size={40}/>
+              <AiOutlineTwitter className={footerstyles.icon} size={40} />
             </a>
           </div>
         </>

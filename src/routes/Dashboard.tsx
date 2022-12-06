@@ -1,13 +1,85 @@
 import { Grid, Box, List, TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { useState } from "react";
+import moment from "moment";
+import { useContext, useEffect, useState } from "react";
 import { BsFillPlusCircleFill } from "react-icons/bs";
+
 import TimePicker from "../components/TimePicker";
+import { UserContextType } from "../context/User";
+import { UserContext } from "../context/UserContext";
 
 import BG from "../css/mm-bg.png";
+import accountService from "../services/accountService";
+import categoryService from "../services/categoryService";
+import entryService from "../services/entryService";
+import { Category } from "../types/Category";
+import { Entry } from "../types/Entry";
 
 export default function Dashboard() {
-  const [date, setDate] = useState();
+  const { token, user, account, setAccount } = useContext(
+    UserContext
+  ) as UserContextType;
+
+  const [date, setDate] = useState(new Date());
+  const [name, setName] = useState("");
+  const [notes, setNotes] = useState("");
+  const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState("");
+  const [newCategory, setNewCategory] = useState("");
+  const [entries, setEntries] = useState<Entry[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  async function getCategories() {
+    const response = await categoryService.getMyCategories(user.id, token);
+    response.success && setCategories(response.data);
+  }
+
+  async function getEntries() {
+    const response = await entryService.getMyEntries(user.id, token);
+    response.success && setEntries(response.data);
+  }
+
+  useEffect(() => {
+    getCategories();
+    getEntries();
+  }, []);
+
+  async function addCategory(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter") {
+      const response = await categoryService.addCategory(user.id, token, {
+        description: newCategory,
+        type: "SPENDING",
+      });
+      if (response.success) {
+        setNewCategory("");
+        getCategories();
+      }
+    }
+  }
+
+  async function addEntry() {
+    const a = moment(date).format("YYYY-MM-DD HH:mm:ss");
+    if (name && notes && date && amount && category) {
+      const response = await entryService.addEntry(user.id, token, {
+        name,
+        type: "SPENDING",
+        amount: +amount,
+        date: a,
+        category_id: +category,
+        description: notes,
+      });
+      const account = await accountService.getAccount(user.id, token);
+      setAccount(account.data[0]);
+      if (response.success) {
+        setName("");
+        setNotes("");
+        setAmount("");
+        setCategory("");
+        getEntries();
+      }
+    }
+  }
+
   return (
     <Grid
       justifyContent="center"
@@ -26,17 +98,24 @@ export default function Dashboard() {
           <Box sx={styles.row}>
             <Box>
               <h3 style={styles.text}>Current Balance</h3>
-              <h2 style={styles.money}>P50,000.00</h2>
+              <h2 style={styles.money}>
+                {account.balance} - {account.currency}
+              </h2>
             </Box>
             <Box>
               <h3 style={styles.text}>Account Name</h3>
-              <h2 style={styles.money}>P50,000.00</h2>
+              <h2 style={styles.money}>{account.name}</h2>
             </Box>
             <Box>
               <h3 style={styles.text}>Add category</h3>
               <br />
               <br />
-              <input style={styles.addCategoryInput} />
+              <input
+                value={newCategory}
+                onChange={(t) => setNewCategory(t.target.value)}
+                onKeyDown={(e) => addCategory(e)}
+                style={styles.addCategoryInput}
+              />
             </Box>
           </Box>
           <h3 style={styles.bigText}>Spending Tracker</h3>
@@ -54,17 +133,21 @@ export default function Dashboard() {
             >
               <h3 style={styles.textFilter}>Apply filter by category:</h3>
               <Box marginLeft={2} display="flex" alignItems="center">
-                <button>Groceries</button>
-                <button>Travel</button>
-                <button>Food</button>
-                <button>School</button>
+                {categories.map((c) => (
+                  <button key={c.id}>{c.description}</button>
+                ))}
               </Box>
             </Box>
           </Box>
-          <Grid container sx={{ marginLeft: "40px", marginRIght: "40px" }}>
-            <Grid item xs={2}>
-              <h5 style={styles.tableHeader}>Category</h5>
-            </Grid>
+          <Grid
+            container
+            sx={{
+              marginLeft: "40px",
+              marginRight: "40px",
+              marginTop: "10px",
+              marginBottom: "10px",
+            }}
+          >
             <Grid item xs={2}>
               <h5 style={styles.tableHeader}>Name</h5>
             </Grid>
@@ -77,9 +160,32 @@ export default function Dashboard() {
             <Grid item xs={4}>
               <h5 style={styles.tableHeader}>Notes</h5>
             </Grid>
+            <Grid item xs={2}>
+              <h5 style={styles.tableHeader}>Category</h5>
+            </Grid>
           </Grid>
           <List style={styles.list}>
-            <h1>a</h1>
+            {entries.map((e) => (
+              <Grid key={e.id} container sx={{}}>
+                <Grid item xs={2}>
+                  <h5 style={styles.tableHeader}>{e.name}</h5>
+                </Grid>
+                <Grid item xs={2}>
+                  <h5 style={styles.tableHeader}>{e.amount}</h5>
+                </Grid>
+                <Grid item xs={2}>
+                  <h5 style={styles.tableHeader}>{e.date}</h5>
+                </Grid>
+                <Grid item xs={4}>
+                  <h5 style={styles.tableHeader}>{e.description}</h5>
+                </Grid>
+                <Grid item xs={2}>
+                  <h5 style={styles.tableHeader}>
+                    {categories.find((c) => c.id == e.category_id)?.description}
+                  </h5>
+                </Grid>
+              </Grid>
+            ))}
           </List>
         </Box>
       </Grid>
@@ -87,28 +193,41 @@ export default function Dashboard() {
         <Box sx={styles.box}>
           <h1 style={styles.bigText}>Add Spending</h1>
           <input
+            value={name}
+            onChange={(t) => setName(t.target.value)}
             placeholder="Name of the item"
             style={styles.addSpendingInput}
           />
           <input
+            value={amount}
+            onChange={(t) => setAmount(t.target.value)}
             placeholder="Name of the item"
             style={styles.addSpendingInput}
           />
+          <TimePicker date={date} setDate={setDate} />
           <input
+            value={notes}
+            onChange={(t) => setNotes(t.target.value)}
             placeholder="Name of the item"
             style={styles.addSpendingInput}
           />
-          <TimePicker />
           <select
+            value={category}
+            onChange={(c) => setCategory(c.target.value)}
             placeholder="Name of the item"
             style={styles.addSpendingInput}
           >
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
+            <option value="" disabled hidden>
+              Choose here
+            </option>
+
+            {categories.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.description}
+              </option>
+            ))}
           </select>
-          <BsFillPlusCircleFill style={styles.icon} />
+          <BsFillPlusCircleFill onClick={addEntry} style={styles.icon} />
         </Box>
       </Grid>
     </Grid>

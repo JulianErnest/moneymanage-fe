@@ -26,14 +26,12 @@ export default function HomeLayout() {
   useEffect(() => {
     if (user.id != 0) {
       navigate("/GettingStarted");
-      if (user.has_account == 1){
+      if (user.has_account == 1) {
         navigate("/Dashboard");
       }
     }
-    
   }, [user]);
 
-  
   return (
     <div>
       {location.pathname === "/" ? (
@@ -57,13 +55,13 @@ export default function HomeLayout() {
               MoneyManage<br></br>© Copyright 2022
             </p>
             <a href="http://facebook.com" className={footerstyles.fb}>
-              <AiFillLinkedin className={footerstyles.icon} size={40}/>
+              <AiFillLinkedin className={footerstyles.icon} size={40} />
             </a>
             <a href="http://instagram.com" className={footerstyles.insta}>
-              <AiFillInstagram className={footerstyles.icon} size={40}/>
+              <AiFillInstagram className={footerstyles.icon} size={40} />
             </a>
             <a href="http://twitter.com" className={footerstyles.twit}>
-              <AiOutlineTwitter className={footerstyles.icon} size={40}/>
+              <AiOutlineTwitter className={footerstyles.icon} size={40} />
             </a>
           </div>
         </div>
