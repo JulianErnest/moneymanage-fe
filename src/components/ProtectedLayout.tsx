@@ -75,7 +75,7 @@ export default function ProtectedLayout() {
                 <div onClick={spendings}>Spendings</div>
                 <div onClick={accounts}>Accounts</div>
               </div>
-            <button onClick={logout}>Logout</button>
+            <button className={headstyles.logout}onClick={logout}>Logout</button>
           </div>
           
           {outlet}
