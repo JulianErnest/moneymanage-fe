@@ -12,6 +12,10 @@ import { AiFillLinkedin } from "react-icons/ai";
 
 import { UserContext } from "../context/UserContext";
 import { UserContextType } from "../context/User";
+import authService from "../services/authService";
+import toastService from "../services/toastService";
+import constants from "../constants";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const allowedRoutes = ["/gettingstarted", "/dashboard", "/accounts"];
 
@@ -19,11 +23,26 @@ export default function ProtectedLayout() {
   const outlet = useOutlet();
   const location = useLocation();
   const navigate = useNavigate();
-  const { user } = useContext(UserContext) as UserContextType;
+  const { user, token, setUser, setAccount } = useContext(
+    UserContext
+  ) as UserContextType;
+  const [_, rememberToken] = useLocalStorage(constants.TOKEN_KEY, "");
 
   const homenig = () => {
     navigate("/");
   };
+
+  async function logout() {
+    try {
+      const response = await authService.logout(token);
+      setUser(constants.DEFAULT_USER);
+      setAccount(constants.DEFAULT_ACCOUNT);
+      rememberToken("");
+      toastService.showToast(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
     console.log(user);
@@ -43,6 +62,7 @@ export default function ProtectedLayout() {
               <img src={logo}></img>
               <h3 className={headstyles.title}>MoneyManage</h3>
             </div>
+            <button onClick={logout}>Logout</button>
           </div>
           {outlet}
           <div className={footerstyles.footerProtected}>

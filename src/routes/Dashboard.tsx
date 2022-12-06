@@ -12,6 +12,7 @@ import BG from "../css/mm-bg.png";
 import accountService from "../services/accountService";
 import categoryService from "../services/categoryService";
 import entryService from "../services/entryService";
+import toastService from "../services/toastService";
 import { Category } from "../types/Category";
 import { Entry } from "../types/Entry";
 
@@ -50,6 +51,7 @@ export default function Dashboard() {
         description: newCategory,
         type: "SPENDING",
       });
+      toastService.showToast(response);
       if (response.success) {
         setNewCategory("");
         getCategories();
@@ -68,6 +70,7 @@ export default function Dashboard() {
         category_id: +category,
         description: notes,
       });
+      toastService.showToast(response);
       const account = await accountService.getAccount(user.id, token);
       setAccount(account.data[0]);
       if (response.success) {
@@ -77,6 +80,12 @@ export default function Dashboard() {
         setCategory("");
         getEntries();
       }
+    } else {
+      toastService.showToast({
+        success: false,
+        message: "Fill out all forms",
+        data: "",
+      });
     }
   }
 

@@ -8,12 +8,15 @@ import { UserContextType } from "../context/User";
 import { UserContext } from "../context/UserContext";
 import accountService from "../services/accountService";
 import toastService from "../services/toastService";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import constants from "../constants";
 
 function Login() {
   const navigate = useNavigate();
   const { setUser, setToken, setAccount } = useContext(
     UserContext
   ) as UserContextType;
+  const [_, rememberToken] = useLocalStorage(constants.TOKEN_KEY, "");
 
   const [email, setEmail] = useState("bats@mail.com");
   const [password, setPassword] = useState("123123");
@@ -30,6 +33,7 @@ function Login() {
         response.data.user.id,
         response.data.token
       );
+      rememberToken(response.data.token);
       setAccount(account.data[0]);
       setToken(response.data.token);
       setUser(response.data.user);

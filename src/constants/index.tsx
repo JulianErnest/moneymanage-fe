@@ -17,4 +17,5 @@ export default {
     updated_at: "",
     user_id: 0,
   },
+  TOKEN_KEY: "TOKENKEY",
 };
