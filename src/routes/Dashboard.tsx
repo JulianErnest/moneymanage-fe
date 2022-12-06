@@ -31,7 +31,9 @@ export default function Dashboard() {
   const [categories, setCategories] = useState<Category[]>([]);
 
   async function getCategories() {
-    const response = await categoryService.getMyCategories(user.id, token);
+    console.log(user.id);
+    const response = await categoryService.getMyCategories(account.id, token);
+    console.log(response);
     response.success && setCategories(response.data);
   }
 

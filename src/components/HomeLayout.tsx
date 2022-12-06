@@ -25,9 +25,10 @@ export default function HomeLayout() {
 
   useEffect(() => {
     if (user.id != 0) {
-      navigate("/GettingStarted");
       if (user.has_account == 1) {
         navigate("/Dashboard");
+      } else {
+        navigate("/GettingStarted");
       }
     }
   }, [user]);
