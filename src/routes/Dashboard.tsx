@@ -38,7 +38,8 @@ export default function Dashboard() {
   }
 
   async function getEntries() {
-    const response = await entryService.getMyEntries(user.id, token);
+    const response = await entryService.getMyEntries(account.id, token);
+    console.log(response);
     response.success && setEntries(response.data);
   }
 
@@ -49,7 +50,7 @@ export default function Dashboard() {
 
   async function addCategory(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
-      const response = await categoryService.addCategory(user.id, token, {
+      const response = await categoryService.addCategory(account.id, token, {
         description: newCategory,
         type: "SPENDING",
       });
@@ -64,7 +65,7 @@ export default function Dashboard() {
   async function addEntry() {
     const a = moment(date).format("YYYY-MM-DD HH:mm:ss");
     if (name && notes && date && amount && category) {
-      const response = await entryService.addEntry(user.id, token, {
+      const response = await entryService.addEntry(account.id, token, {
         name,
         type: "SPENDING",
         amount: +amount,
@@ -72,9 +73,10 @@ export default function Dashboard() {
         category_id: +category,
         description: notes,
       });
+      console.log(response);
       toastService.showToast(response);
-      const account = await accountService.getAccount(user.id, token);
-      setAccount(account.data[0]);
+      const accountResponse = await accountService.getAccount(user.id, token);
+      setAccount(accountResponse.data[0]);
       if (response.success) {
         setName("");
         setNotes("");
@@ -82,6 +84,7 @@ export default function Dashboard() {
         setCategory("");
         getEntries();
       }
+      getEntries();
     } else {
       toastService.showToast({
         success: false,
