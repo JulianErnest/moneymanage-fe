@@ -83,7 +83,7 @@ export default function ProtectedLayout() {
             <p className={footerstyles.footerp1}>
               MoneyManage<br></br>© Copyright 2022
             </p>
-            <a href="http://facebook.com" className={footerstyles.fb}>
+            <a href="http://linkedin.com" className={footerstyles.fb}>
               <AiFillLinkedin className={footerstyles.icon} size={40} />
             </a>
             <a href="http://instagram.com" className={footerstyles.insta}>

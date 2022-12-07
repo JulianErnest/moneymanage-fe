@@ -91,13 +91,6 @@ const styles = {
     backgroundSize: "cover",
     flex: "auto",
   },
-  icon: {
-    color: "#065ED4",
-    textAlign: "center" as const,
-    width: "100%",
-    fontSize: 40,
-    marginTop: 25,
-  },
   box: {
     width: "100%",
     backgroundColor: "#323232",
@@ -105,14 +98,6 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     borderRadius: "10px",
-  },
-  button: {
-    width: "130px",
-    marginLeft: "20px",
-    height: "30px",
-    borderRadius: "10px",
-    backgroundColor: "#737373",
-    color: "white",
   },
   row: {
     display: "flex",
@@ -136,11 +121,6 @@ const styles = {
     marginTop: "10px",
     marginBottom: "15px",
   },
-  money: {
-    color: "white",
-    fontSize: "1.3em",
-    marginLeft: "20px",
-  },
   text: {
     color: "white",
     fontSize: "0.8em",
@@ -154,11 +134,6 @@ const styles = {
     marginTop: "-10px",
     fontSize: "10px",
     textAlign: "center" as const,
-  },
-  textFilter: {
-    color: "white",
-    fontSize: "0.8em",
-    marginLeft: 20,
   },
   tableHeader: {
     textAlign: "left" as const,
