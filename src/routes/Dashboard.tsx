@@ -125,39 +125,24 @@ export default function Dashboard() {
     >
       <Grid item xs={8} overflow="auto">
         <Box sx={styles.box}>
-          <h3 style={styles.bigText}>My Account</h3>
+
+          <br></br><br></br>
+          <h3 style={styles.bigText}>Spending Tracker</h3>
           <h5 style={styles.lightText}>
-            View your current balance relative to the monthly budget you
-            inputted here.
+            View all your recent purchases here. Amount paid and nature of
+            purchase included.
           </h5>
-          <Box sx={styles.row}>
+          <Box sx={styles.rowAddCat}>
             <Box>
-              <h3 style={styles.text}>Current Balance</h3>
-              <h2 style={styles.money}>
-                {account.balance} - {account.currency}
-              </h2>
-            </Box>
-            <Box>
-              <h3 style={styles.text}>Account Name</h3>
-              <h2 style={styles.money}>{account.name}</h2>
-            </Box>
-            <Box>
-              <h3 style={styles.text}>Add category</h3>
-              <br />
-              <br />
               <input
                 value={newCategory}
                 onChange={(t) => setNewCategory(t.target.value)}
                 onKeyDown={(e) => addCategory(e)}
                 style={styles.addCategoryInput}
               />
+              <h3 style={styles.text}>Add category</h3>
             </Box>
           </Box>
-          <h3 style={styles.bigText}>Spending Tracker</h3>
-          <h5 style={styles.lightText}>
-            View all your recent purchases here. Amount paid and nature of
-            purchase included.
-          </h5>
           <Box sx={styles.row}>
             <Box
               sx={{
@@ -332,6 +317,14 @@ const styles = {
     width: "95%",
     marginTop: "20px",
     justifyContent: "space-between",
+  },
+  rowAddCat:{
+    display: "flex",
+    flexDirection: "row",
+    width: "95%",
+    marginTop: "20px",
+    justifyContent: "space-between",
+    marginLeft: "57%"
   },
   bigText: {
     color: "white",
