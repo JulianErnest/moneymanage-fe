@@ -17,7 +17,12 @@ import toastService from "../services/toastService";
 import constants from "../constants";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
-const allowedRoutes = ["/gettingstarted", "/dashboard", "/accounts"];
+const allowedRoutes = [
+  "/gettingstarted",
+  "/dashboard",
+  "/accounts",
+  "/statistics",
+];
 
 export default function ProtectedLayout() {
   const outlet = useOutlet();
@@ -31,14 +36,18 @@ export default function ProtectedLayout() {
   const homenig = () => {
     navigate("/");
   };
-  
+
   const accounts = () => {
     navigate("/Accounts");
   };
+
   const spendings = () => {
     navigate("/Dashboard");
   };
-  
+
+  const statistics = () => {
+    navigate("/Statistics");
+  };
 
   async function logout() {
     try {
@@ -69,15 +78,17 @@ export default function ProtectedLayout() {
             <div className={headstyles.logopic} onClick={homenig}>
               <img src={logo}></img>
               <h3 className={headstyles.title}>MoneyManage</h3>
-              
             </div>
             <div className={headstyles.nav}>
-                <div onClick={spendings}>Spendings</div>
-                <div onClick={accounts}>Accounts</div>
-              </div>
-            <button className={headstyles.logout}onClick={logout}>Logout</button>
+              <div onClick={spendings}>Spendings</div>
+              <div onClick={accounts}>Accounts</div>
+              <div onClick={statistics}>Statistics</div>
+            </div>
+            <button className={headstyles.logout} onClick={logout}>
+              Logout
+            </button>
           </div>
-          
+
           {outlet}
           <div className={footerstyles.footerProtected}>
             <p className={footerstyles.footerp1}>

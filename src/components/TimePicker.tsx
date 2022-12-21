@@ -36,7 +36,7 @@ export default function TimePicker({ date, setDate }: any) {
 
 const styles = {
   addSpendingDate: {
-    backgroundColor: "#737373",
+    backgroundColor: "#e8f6fd",
     marginLeft: "50px",
     marginRight: "50px",
     height: "30px",

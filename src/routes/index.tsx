@@ -16,6 +16,7 @@ import authService from "../services/authService";
 import { UserContextType } from "../context/User";
 import { UserContext } from "../context/UserContext";
 import accountService from "../services/accountService";
+import Statistics from "./Statistics";
 
 export default function App() {
   const [savedToken, _] = useLocalStorage(constants.TOKEN_KEY, "");
@@ -61,6 +62,7 @@ export default function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/gettingstarted" element={<GettingStarted />} />
           <Route path="/accounts" element={<Accounts />} />
+          <Route path="/statistics" element={<Statistics />} />
         </Route>
       </Routes>
     </BrowserRouter>

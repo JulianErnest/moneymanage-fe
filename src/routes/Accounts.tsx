@@ -58,7 +58,9 @@ export default function Dashboard() {
             placeholder="Cash Balance of account"
             style={styles.acccountInformation}
           />
-          <button style={styles.editButton} color="#065ED4">Update Account Details</button>
+          <button style={styles.editButton} color="#065ED4">
+            Update Account Details
+          </button>
         </Box>
       </Grid>
     </Grid>
@@ -77,11 +79,11 @@ const styles = {
     borderRight: "0px",
   },
   acccountInformation: {
-    backgroundColor: "#737373",
+    backgroundColor: "#e8f6fd",
+    height: "30px",
+    marginTop: "30px",
     marginLeft: "50px",
     marginRight: "50px",
-    height: "30px",
-    margin: "30px",
   },
   container: {
     paddingLeft: "5%",
@@ -150,19 +152,19 @@ const styles = {
     marginLeft: 40,
     paddingBottom: 50,
   },
-  topContainer:{
+  topContainer: {
     marginTop: 10,
     marginBottom: 10,
   },
   editButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 4,
     elevation: 3,
     width: 250,
     height: 50,
-    margin: 'auto',
-  }
+    margin: "auto",
+  },
 };

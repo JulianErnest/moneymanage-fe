@@ -33,7 +33,7 @@ function GettingStarted() {
       setName("");
       setBalance("");
       setCurrency("");
-      navigate("/Dashboard");
+      // navigate("/Dashboard");
     }
   }
 

@@ -28,10 +28,10 @@ export default function Dashboard() {
   const [category, setCategory] = useState("");
   const [newCategory, setNewCategory] = useState("");
   const [entries, setEntries] = useState<Entry[]>([]);
+  const [filteredEntries, setFilteredEntries] = useState<Entry[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-
+  const [filters, setFilters] = useState<number[]>([]);
   async function getCategories() {
-    console.log(user.id);
     const response = await categoryService.getMyCategories(account.id, token);
     console.log(response);
     response.success && setCategories(response.data);
@@ -41,11 +41,32 @@ export default function Dashboard() {
     const response = await entryService.getMyEntries(account.id, token);
     console.log(response);
     response.success && setEntries(response.data);
+    return response.data;
+  }
+
+  function applyFilter(id: number) {
+    let filterSet = new Set([...filters]);
+    setFilteredEntries([...entries]);
+    if (filters.includes(id)) {
+      filterSet.delete(id);
+    } else {
+      filterSet.add(id);
+    }
+    setFilters([...filterSet]);
+    if (filterSet.size == 0) {
+      console.log(entries);
+      setFilteredEntries([...entries]);
+    } else {
+      setFilteredEntries(entries.filter((e) => filterSet.has(e.category_id)));
+    }
   }
 
   useEffect(() => {
-    getCategories();
-    getEntries();
+    (async () => {
+      await getCategories();
+      const data = await getEntries();
+      setFilteredEntries(data);
+    })();
   }, []);
 
   async function addCategory(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -148,7 +169,15 @@ export default function Dashboard() {
               <h3 style={styles.textFilter}>Apply filter by category:</h3>
               <Box marginLeft={2} display="flex" alignItems="center">
                 {categories.map((c) => (
-                  <button key={c.id}>{c.description}</button>
+                  <button
+                    style={
+                      filters.includes(c.id) ? { backgroundColor: "blue" } : {}
+                    }
+                    onClick={() => applyFilter(c.id)}
+                    key={c.id}
+                  >
+                    {c.description}
+                  </button>
                 ))}
               </Box>
             </Box>
@@ -171,15 +200,15 @@ export default function Dashboard() {
             <Grid item xs={2}>
               <h5 style={styles.tableHeader}>Date</h5>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={3}>
               <h5 style={styles.tableHeader}>Notes</h5>
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={3}>
               <h5 style={styles.tableHeader}>Category</h5>
             </Grid>
           </Grid>
           <List style={styles.list}>
-            {entries.map((e) => (
+            {filteredEntries.map((e) => (
               <Grid key={e.id} container sx={{}}>
                 <Grid item xs={2}>
                   <h5 style={styles.tableHeader}>{e.name}</h5>
@@ -215,20 +244,20 @@ export default function Dashboard() {
           <input
             value={amount}
             onChange={(t) => setAmount(t.target.value)}
-            placeholder="Name of the item"
+            placeholder="Amount"
             style={styles.addSpendingInput}
           />
           <TimePicker date={date} setDate={setDate} />
           <input
             value={notes}
             onChange={(t) => setNotes(t.target.value)}
-            placeholder="Name of the item"
+            placeholder="Notes"
             style={styles.addSpendingInput}
           />
           <select
             value={category}
             onChange={(c) => setCategory(c.target.value)}
-            placeholder="Name of the item"
+            placeholder="Category"
             style={styles.addSpendingInput}
           >
             <option value="" disabled hidden>
@@ -260,7 +289,7 @@ const styles = {
     borderRight: "0px",
   },
   addSpendingInput: {
-    backgroundColor: "#737373",
+    backgroundColor: "#e8f6fd",
     marginLeft: "50px",
     marginRight: "50px",
     height: "30px",
@@ -349,5 +378,11 @@ const styles = {
     color: "white",
     padding: 0,
     margin: 0,
+  },
+  categoryHeader: {
+    textAlign: "left" as const,
+    width: "100%",
+    color: "white",
+    padding: 0,
   },
 };

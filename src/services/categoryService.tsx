@@ -8,7 +8,6 @@ async function getMyCategories(id: number, token: string) {
         Authorization: "Bearer " + token,
       },
     });
-    console.log(response);
     return response.data;
   } catch (error: any) {
     return error.response.data;
