@@ -13,11 +13,13 @@ import toastService from "../services/toastService";
 
 function GettingStarted() {
   const navigate = useNavigate();
-  const { user, token, setToken } = useContext(UserContext) as UserContextType;
+  const { user, token, setAccount, account } = useContext(
+    UserContext
+  ) as UserContextType;
   const [name, setName] = useState("");
   const [balance, setBalance] = useState("");
   const [currency, setCurrency] = useState("");
-
+  console.log(account);
   async function onSubmit() {
     const response = await accountService.createAccount({
       name,
@@ -27,13 +29,11 @@ function GettingStarted() {
       token,
     });
     toastService.showToast(response);
-    setToken(response.data);
-
+    setAccount(response.data);
     if (response.success) {
       setName("");
       setBalance("");
       setCurrency("");
-      // navigate("/Dashboard");
     }
   }
 

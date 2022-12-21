@@ -1,4 +1,4 @@
-import { GettingStartedFields } from "../types/fields";
+import { GettingStartedFields, UpdateAccountFields } from "../types/fields";
 import api, { DefaultResponse } from "./api";
 
 async function createAccount(fields: GettingStartedFields) {
@@ -32,7 +32,27 @@ async function getAccount(id: number, token: string) {
   }
 }
 
+async function updateAccount(id: number, token: string, fields: UpdateAccountFields) {
+  try {
+    const response = await api.put(
+      "/account/"  + id,
+      { ...fields },
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    console.log(response);
+    return response.data as DefaultResponse;
+  } catch (error: any) {
+    console.log(error);
+    return error.response.data;
+  }
+}
+
 export default {
   createAccount,
   getAccount,
+  updateAccount,
 };

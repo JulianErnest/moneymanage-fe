@@ -32,3 +32,8 @@ export type AddEntryFields = {
   description: string;
   category_id: number;
 };
+
+export type UpdateAccountFields = {
+  name: string;
+  balance: number;
+};
