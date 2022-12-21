@@ -28,7 +28,7 @@ export default function ProtectedLayout() {
   const outlet = useOutlet();
   const location = useLocation();
   const navigate = useNavigate();
-  const { user, token, setUser, setAccount } = useContext(
+  const { user, token, setUser, setAccount, account } = useContext(
     UserContext
   ) as UserContextType;
   const [_, rememberToken] = useLocalStorage(constants.TOKEN_KEY, "");
@@ -66,7 +66,10 @@ export default function ProtectedLayout() {
     if (user.id == 0) {
       navigate("/");
     }
-  }, [user]);
+    if (account && account.id != 0) {
+      navigate("/Dashboard");
+    }
+  }, [user, account]);
 
   console.log(location.pathname);
 
