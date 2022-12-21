@@ -1,11 +1,74 @@
 import { Grid, Box, List, TextField } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-import { useState } from "react";
 
 import BG from "../css/mm-bg.png";
+import { makeStyles } from "@mui/styles";
+import moment from "moment";
+import { useContext, useEffect, useState } from "react";
+import { BsFillPlusCircleFill, BsTabletLandscape } from "react-icons/bs";
 
-export default function Dashboard() {
-  const [date, setDate] = useState();
+import { UserContextType } from "../context/User";
+import { UserContext } from "../context/UserContext";
+
+import accountService from "../services/accountService";
+import entryService from "../services/entryService";
+import toastService from "../services/toastService";
+import Dropdown from "../components/Dropdown";
+import { Category } from "../types/Category";
+import { Entry } from "../types/Entry";
+import { Account } from "../types/Account";
+
+export default function Accounts() {
+  const { token, user, account, setAccount } = useContext(
+    UserContext
+  ) as UserContextType;
+
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState("");
+  const [currency, setCurrency] = useState("");
+  const [entries, setEntries] = useState<Entry[]>([]);
+  const [accounts, setAccounts] = useState<Account[]>([]);
+
+  async function getEntries() {
+    const response = await entryService.getMyEntries(account.id, token);
+    console.log(response);
+    response.success && setEntries(response.data);
+  }
+
+  async function getAccounts() {
+    const response = await accountService.getAccount(account.id, token);
+    console.log(response);
+    response.success && setAccounts(response.data);
+  }
+
+  useEffect(() => {
+    getEntries();
+    getAccounts();
+  }, []);
+
+  async function updateAccount() {
+    if (name && amount ) {
+      const response = await accountService.updateAccount(account.id, token, {
+        name,
+        balance: +amount,
+      });
+      console.log(response);
+      toastService.showToast(response);
+      const accountResponse = await accountService.getAccount(user.id, token);
+      setAccount(accountResponse.data[0]);
+
+      if (response.success) {
+        setName("");
+        setAmount("");
+      }
+      getEntries();
+    } else {
+      toastService.showToast({
+        success: false,
+        message: "Fill out all forms",
+        data: "",
+      });
+    }
+  }
   return (
     <Grid
       justifyContent="center"
@@ -28,10 +91,6 @@ export default function Dashboard() {
                 justifyContent: "center",
               }}
             >
-              <Box style={styles.topContainer}>
-                <h3 style={styles.midText}>Search by account Name</h3>
-                <input style={styles.searchAccountInput}></input>
-              </Box>
             </Box>
           </Box>
           <Grid container sx={{ marginLeft: "40px", marginRIght: "40px" }}>
@@ -43,7 +102,16 @@ export default function Dashboard() {
             </Grid>
           </Grid>
           <List style={styles.list}>
-            <h1>a</h1>
+            {accounts.map((a) => (
+              <Grid key={a.id} container sx={{}}>
+                <Grid item xs={6}>
+                  <h5 style={styles.tableHeader}>{a.name}</h5>
+                </Grid>
+                <Grid item xs={1}>
+                  <h5 style={styles.tableHeader}>{a.balance}</h5>
+                </Grid>
+              </Grid>
+            ))}
           </List>
         </Box>
       </Grid>
@@ -51,14 +119,19 @@ export default function Dashboard() {
         <Box sx={styles.box}>
           <h1 style={styles.bigText}>Account Details</h1>
           <input
+            value={name}
+            onChange={(t) => setName(t.target.value)}
             placeholder="Name of the account"
             style={styles.acccountInformation}
           />
           <input
+            value={amount}
+            onChange={(t) => setAmount(t.target.value)}
             placeholder="Cash Balance of account"
             style={styles.acccountInformation}
           />
-          <button style={styles.editButton} color="#065ED4">Update Account Details</button>
+          
+          <button onClick={updateAccount} style={styles.editButton} color="#065ED4">Update Account Details</button>
         </Box>
       </Grid>
     </Grid>
